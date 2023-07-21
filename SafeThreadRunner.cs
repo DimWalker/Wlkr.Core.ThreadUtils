@@ -95,17 +95,17 @@
 
         public RestResult()
         {
-            code = "000";
+            code = "200";
         }
     }
 
     public class RestResult<T> : RestResult
     {
-        public T results { get; set; }
+        public T data { get; set; }
 
-        public RestResult(T data) : base()
+        public RestResult(T _data) : base()
         {
-            results = data;
+            data = _data;
         }
         public RestResult() : base()
         {
