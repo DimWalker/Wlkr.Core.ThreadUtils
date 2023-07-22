@@ -7,9 +7,9 @@ using Wlkr.SafePaddleOCR;
 Console.WriteLine("Running Wlkr.SafePaddleOCR.Console...");
 //Warmup
 SafePaddleOCR safePaddleOCR = new SafePaddleOCR();
-string imgPath = @"../../../../vx_images/DimTechStudio-Logo.png";
+string imgPath = @"../../../../../vx_images/DimTechStudio-Logo.png";
 var res = safePaddleOCR.Run(imgPath);
-Console.Write(@"res: {res.data.Text}");
+Console.WriteLine($"res: {res.data.Text}");
 
 List<Task<RestResult<PaddleOcrResult>>> lst = new List<Task<RestResult<PaddleOcrResult>>>();
 bool okFlag = true;
