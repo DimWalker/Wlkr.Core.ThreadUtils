@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<Authors>Walker Chan</Authors>
+	<Company>广州市增城区黯影信息科技部</Company>
+	<Description>基于PaddleSharp.PaddleOCR设计的线程安全模板</Description>
+	<PackageProjectUrl>https://github.com/DimWalker/Wlkr.Core.ThreadUtils</PackageProjectUrl>
+	<RepositoryUrl>https://github.com/DimWalker/Wlkr.Core.ThreadUtils</RepositoryUrl>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<Copyright>Copyright 2023 DimWalker</Copyright>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenCvSharp4" Version="4.8.0.20230708" />
+    <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.8.0.20230708" />
+    <PackageReference Include="Sdcb.PaddleInference" Version="2.4.1.4" />
+    <PackageReference Include="Sdcb.PaddleInference.runtime.win64.mkl" Version="2.4.1" />
+    <PackageReference Include="Sdcb.PaddleOCR" Version="2.6.0.5" />
+    <PackageReference Include="Sdcb.PaddleOCR.Models.LocalV3" Version="2.6.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Wlkr.Core.ThreadUtils\Wlkr.Core.ThreadUtils.csproj" />
+  </ItemGroup>
+
+</Project>

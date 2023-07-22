@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Authors>Walker Chan</Authors>
+    <Company>广州市增城区黯影信息科技部</Company>
+    <Description>基于PaddleSharp.PaddleOCR设计的线程安全模板</Description>
+    <PackageProjectUrl>https://github.com/DimWalker/Wlkr.Core.ThreadUtils</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/DimWalker/Wlkr.Core.ThreadUtils</RepositoryUrl>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Copyright>Copyright 2023 DimWalker</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

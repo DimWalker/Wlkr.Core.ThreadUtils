@@ -1,21 +1,20 @@
 ﻿namespace Wlkr.Core.ThreadUtils
 {
-    public class SafeThreadRunner<Cls, In, Out, T> where Cls : IDisposable
-        where Out : RestResult<T>, new()
+    public class SafeThreadRunner<Cls, In, Out> where Cls : IDisposable       
     {
         private SemaphoreSlim safeSrcSlim = new SemaphoreSlim(1, 1);
         private SemaphoreSlim safeRunSlim = new SemaphoreSlim(0, 1);
         private SemaphoreSlim safeResSlim = new SemaphoreSlim(0, 1);
 
         private In Source;
-        private RestResult<T> Result;
+        private RestResult<Out> Result;
 
         private Thread safeThread;
         private Func<Cls> initFunc;
-        private Func<Cls, In, RestResult<T>> runFunc;
+        private Func<Cls, In, RestResult<Out>> runFunc;
 
         public bool IsDisposed { get; private set; } = false;
-        public SafeThreadRunner(Func<Cls> _initFunc, Func<Cls, In, RestResult<T>> _runFunc)
+        public SafeThreadRunner(Func<Cls> _initFunc, Func<Cls, In, RestResult<Out>> _runFunc)
         {
             if (_initFunc == null)
                 throw new ArgumentNullException(nameof(initFunc));
@@ -41,7 +40,7 @@
                 }
                 catch (Exception ex)
                 {
-                    Result = new RestResult<T>()
+                    Result = new RestResult<Out>()
                     {
                         code = "500",
                         msg = ex.Message
@@ -54,15 +53,15 @@
             }
         }
 
-        public Task<RestResult<T>> RunAsync(In src)
+        public Task<RestResult<Out>> RunAsync(In src)
         {
-            Task<RestResult<T>> task = Task.Run(() =>
+            Task<RestResult<Out>> task = Task.Run(() =>
             {
                 return Run(src);
             });
             return task;
         }
-        public RestResult<T> Run(In src)
+        public RestResult<Out> Run(In src)
         {
             //是否空闲
             safeSrcSlim.Wait();
@@ -76,7 +75,6 @@
             safeSrcSlim.Release();
             return Result;
         }
-
 
         public void Dispose()
         {
