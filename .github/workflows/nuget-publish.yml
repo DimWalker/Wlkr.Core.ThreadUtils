@@ -22,10 +22,14 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dotnet build --configuration Release --include "Wlkr.Core.ThreadUtils/**/*.csproj, Wlkr.SafePaddleOCR/**/*.csproj"
+        run: dotnet build --configuration Release
 
       - name: Pack NuGet package
-        run: dotnet pack --configuration Release --no-build
+        run: |
+          cd Wlkr.Core.ThreadUtils
+          dotnet pack Wlkr.Core.ThreadUtils.csproj  --configuration Release --no-build
+          cd Wlkr.SafePaddleOCR
+          dotnet pack Wlkr.SafePaddleOCR.csproj  --configuration Release --no-build
 
       - name: Publish NuGet package
         run: dotnet nuget push **/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
