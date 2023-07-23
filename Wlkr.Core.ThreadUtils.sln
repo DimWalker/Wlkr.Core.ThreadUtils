@@ -5,9 +5,9 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wlkr.Core.ThreadUtils", "Wlkr.Core.ThreadUtils\Wlkr.Core.ThreadUtils.csproj", "{E52931D4-D007-4606-8B12-B7B5708B5BC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wlkr.SafePaddleOCR", "Wlkr.SafePaddleOCR\Wlkr.SafePaddleOCR.csproj", "{083D3807-2072-4E89-8945-40C47D023F4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wlkr.SafePaddleOCR", "Wlkr.SafePaddleOCR\Wlkr.SafePaddleOCR.csproj", "{083D3807-2072-4E89-8945-40C47D023F4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wlkr.SafePaddleOCR.Console", "Wlkr.SafePaddleOCR.Console\Wlkr.SafePaddleOCR.Console.csproj", "{8D8B2F99-4E05-4177-A341-3B3E469D61AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wlkr.SafePaddleOCR.Console", "Wlkr.SafePaddleOCR.Console\Wlkr.SafePaddleOCR.Console.csproj", "{8D8B2F99-4E05-4177-A341-3B3E469D61AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
