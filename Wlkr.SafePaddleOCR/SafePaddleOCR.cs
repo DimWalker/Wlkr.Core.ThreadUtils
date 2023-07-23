@@ -11,7 +11,7 @@ namespace Wlkr.SafePaddleOCR
     {
         private SafeThreadRunner<PaddleOcrAll, Mat, PaddleOcrResult> safeThreadRunner;
         public SafePaddleOCR()
-        {           
+        {
             safeThreadRunner = new SafeThreadRunner<PaddleOcrAll, Mat, PaddleOcrResult>(OCRFactory.BuildAllWithMkldnn, OCRFactory.RunAll);
         }
 
@@ -32,7 +32,7 @@ namespace Wlkr.SafePaddleOCR
 
         public RestResult<PaddleOcrResult> Run(string filePath)
         {
-            var mat = Cv2.ImRead(filePath, ImreadModes.AnyColor);
+            using var mat = Cv2.ImRead(filePath, ImreadModes.AnyColor);
             var res = safeThreadRunner.Run(mat);
             return res;
         }

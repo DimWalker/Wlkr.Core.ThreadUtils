@@ -1,0 +1,25 @@
+<Project>
+	<PropertyGroup>
+		<Authors>Walker Chan</Authors>
+		<Company>广州市增城区黯影信息科技部</Company>
+		<Copyright>Copyright 2023 DimWalker</Copyright>
+	</PropertyGroup>
+
+	<!-- Calculate the build and revision numbers based on the current date -->
+	<PropertyGroup>
+		<MajorVersion>1</MajorVersion>
+		<MinorVersion>0</MinorVersion>
+		<BuildDate>2307</BuildDate>
+		<RevisionTime>2300</RevisionTime>
+		<!--<MinorVersion>$([System.DateTime]::Now.ToString("yy"))</MinorVersion>-->
+		<!--<BuildDate>$([System.DateTime]::Now.ToString("MMdd"))</BuildDate>-->
+		<!--<RevisionTime>$([System.DateTime]::Now.ToString("HHmm"))</RevisionTime>-->
+		<BuildNumber>$(MajorVersion).$(MinorVersion).$(BuildDate).$(RevisionTime)</BuildNumber>
+	</PropertyGroup>
+
+	<!-- Use the calculated version for the NuGet package -->
+	<PropertyGroup>
+		<VersionPrefix>$(BuildNumber)</VersionPrefix>
+		<Version>$(VersionPrefix)</Version>
+	</PropertyGroup>
+</Project>

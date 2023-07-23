@@ -1,5 +1,5 @@
 # Wlkr.Core.ThreadUtils
-![DimTechStudio.Com](https://raw.githubusercontent.com/DimWalker/Wlkr.Core.ThreadUtils/e791fcf4d8e50a728675440aa5f89afd63b2b3b5/vx_images/DimTechStudio-Logo.png)
+![DimTechStudio.Com](https://raw.githubusercontent.com/DimWalker/Wlkr.Core.ThreadUtils/master/vx_images/DimTechStudio-Logo.png)
 ## 项目背景
 
 早在PaddleOCR 2.2版本时期，认识了周杰大佬的PaddleSharp项目，试用其中PaddleOCR时，发现它在改为web api调用时会报错，大概意思是OCR实例的内存只能由其创建的线程才具有访问权限，于是就有了本项目的雏形。 
