@@ -13,7 +13,7 @@ var res = safePaddleOCR.Run(imgPath);
 Console.WriteLine($"res: {res.data.Text}");</Description>
 	<PackageProjectUrl>https://github.com/DimWalker/Wlkr.Core.ThreadUtils</PackageProjectUrl>
 	<RepositoryUrl>https://github.com/DimWalker/Wlkr.Core.ThreadUtils</RepositoryUrl>
-	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 	<Copyright>$(Copyright)</Copyright>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<RepositoryType>git</RepositoryType>

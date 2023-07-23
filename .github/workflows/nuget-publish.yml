@@ -22,7 +22,7 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dotnet build --configuration Release
+        run: dotnet build --configuration Release --include "Wlkr.Core.ThreadUtils/**/*.csproj, Wlkr.SafePaddleOCR/**/*.csproj"
 
       - name: Pack NuGet package
         run: dotnet pack --configuration Release --no-build
