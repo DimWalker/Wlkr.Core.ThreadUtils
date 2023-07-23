@@ -8,13 +8,63 @@
  
 潜伏于大佬Q群中很长时间，这个问题更是老生常谈。虽然后来大佬实现了基于`BlockingCollection`的线程安全示例，不过估计因为README全是英文，还是出现了很多星际玩家。
 
+
 ## 食用方式
 
 项目中的SafeThreadRunner，为了实现更直观的调用方式（`var res = ocr.run(mat)`），使用了3个信号量`SemaphoreSlim`实现了线程安全的轮询方法，它们的作用分别是否空闲，唤醒线程，返回结果。
 
 `SafeThreadRunner<Cls, In, Out>`，可以从泛型的名字猜测，Cls对应OCR的实例（如All、Rec、Det等任务），`In`为输入即Mat，`Out`为输出即Restful规范的返回结果`RestResult<Out>`。
 
-nuget安装包参考命令
+### 核心代码
+代码很简单，下面这段代码，通过信号量负责检查线程是否空闲。如果空闲， 则设置入参，唤醒线程。  
+```C#
+public RestResult<Out> Run(In src)
+{
+    //是否空闲
+    safeSrcSlim.Wait();
+    //设置Source
+    Source = src;
+    //恢复线程，运行runFunc
+    safeRunSlim.Release();
+    //等待runFunc结果
+    safeResSlim.Wait();
+    //释放信号量，设为空闲
+    safeSrcSlim.Release();
+    return Result;
+}
+```
+
+唤醒后则执行识别，告诉调用者识别完成，输出结果。（Dispose同理）  
+```C#
+private void RunByThread()
+{
+    using Cls cls = initFunc();
+    while (true)
+    {
+        safeRunSlim.Wait();
+        if (IsDisposed)
+            return;
+        try
+        {
+            Result = runFunc(cls, Source);
+        }
+        catch (Exception ex)
+        {
+            Result = new RestResult<Out>()
+            {
+                code = "500",
+                msg = ex.Message
+            };
+        }
+        finally
+        {
+            safeResSlim.Release();
+        }
+    }
+}
+```
+
+### nuget安装参考命令
 
 ```powershell
 # 新建一个console项目
@@ -23,6 +73,7 @@ dotnet new console
 dotnet add package Wlkr.SafePaddleOCR
 ```
 
+### CPU加速示例
 本项目实现的SafePaddleOCR为PaddleOcrAll开启Mkldnn的实例，使用方式如下：
 ```C#
 //Warmup
@@ -32,6 +83,7 @@ var res = safePaddleOCR.Run(imgPath);
 Console.Write(@"res: {res.data.Text}");
 ```
 
+### 定制示例
 如需要定制自己的线程安全实例，可参考：
 ```C#
 //实例的初始化方法
@@ -98,4 +150,4 @@ System.AccessViolationException: Attempted to read or write protected memory. Th
 ## Author Info
 DimWalker
 ©2023 广州市增城区黯影信息科技部
-https://www.dimtechstudio.com/
+[https://www.dimtechstudio.com/](https://www.dimtechstudio.com/)
