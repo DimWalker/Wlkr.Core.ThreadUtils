@@ -49,14 +49,15 @@ var res = safeThreadRunner.Run(mat);
 ```
 
 ## `SemaphoreSlim`与`BlockingCollection`对比
- * 两边均是单实例测试，性能几乎一样，没有明显差异  
-* 多实例测试暂缺  
-* 硬捧本项目存在的优势  
-> 由于我也重构过周杰的[QueuedPaddleOcrAll.cs](https://github.com/sdcb/PaddleSharp/blob/master/src/Sdcb.PaddleOCR/QueuedPaddleOcrAll.cs)，增加了动态添加/删除实例的功能，但是其使用了Task作为轮询，Task不能像Thread那样，有真正意义上的取消动作。`CancellationToken`实现的取消，最大缺陷是在阻塞时是无效的。故即便我实现了取消，它也必须从blockingCollection.GetConsumingEnumerable()获取到消息执行一次OCR识别，才能释放OCR实例。  
-而本项目使用了`SemaphoreSlim`，执行Dispose时只要线程是空闲即可触发释放OCR实例。  
+* 单实例测试：性能几乎一样，没有明显差异  
+* 多实例测试：暂缺  
+* 周杰大佬的项目优势：实现生产者消费者模式  
+* 本项目优势：单实例Dispose  
+> 由于我也重构过周杰大佬的[QueuedPaddleOcrAll.cs](https://github.com/sdcb/PaddleSharp/blob/master/src/Sdcb.PaddleOCR/QueuedPaddleOcrAll.cs)，其Dispose方式只能释放所有实例。虽然我增加了动态添加/删除实例的功能，但其使用了Task作为轮询的载体，Task不能像Thread那样有真正意义上的取消动作。`CancellationToken`实现的取消最大缺陷是在阻塞时是无效的。即便我实现了取消，它也必须从blockingCollection.GetConsumingEnumerable()获取到消息执行一次OCR识别，才能释放OCR实例，极端情况下等于无法是释放。  
+而本项目使用了`SemaphoreSlim`，执行Dispose时只要线程是空闲即可触发OCR实例的释放。  
 
 ## Author Info
 DimWalker
-©2022 广州市增城区黯影信息科技部
+©2023 广州市增城区黯影信息科技部
 https://www.dimtechstudio.com/
 
