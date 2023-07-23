@@ -44,7 +44,7 @@ Func<PaddleOcrAll, Mat, RestResult<PaddleOcrResult>> mthdFunc = (cls, source) =>
 SafeThreadRunner<PaddleOcrAll, Mat, PaddleOcrResult> safeThreadRunner = new SafeThreadRunner<PaddleOcrAll, Mat, PaddleOcrResult>(OCRFactory.BuildAllWithMkldnn, OCRFactory.RunAll);
 //运行
 string imgPath = @"../../../../vx_images/DimTechStudio-Logo.png";
-var mat = Cv2.ImRead(filePath, ImreadModes.AnyColor);
+using var mat = Cv2.ImRead(filePath, ImreadModes.AnyColor);
 var res = safeThreadRunner.Run(mat);
 ```
 

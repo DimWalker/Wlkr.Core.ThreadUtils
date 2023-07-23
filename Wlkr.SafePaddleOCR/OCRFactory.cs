@@ -12,7 +12,7 @@ using Wlkr.Core.ThreadUtils;
 
 namespace Wlkr.SafePaddleOCR
 {
-    internal class OCRFactory
+    public class OCRFactory
     {
         public static PaddleOcrAll BuildAllWithMkldnn(FullOcrModel fullOcrModel)
         {

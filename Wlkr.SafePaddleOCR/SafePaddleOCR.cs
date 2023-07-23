@@ -11,7 +11,7 @@ namespace Wlkr.SafePaddleOCR
     {
         private SafeThreadRunner<PaddleOcrAll, Mat, PaddleOcrResult> safeThreadRunner;
         public SafePaddleOCR()
-        {
+        {           
             safeThreadRunner = new SafeThreadRunner<PaddleOcrAll, Mat, PaddleOcrResult>(OCRFactory.BuildAllWithMkldnn, OCRFactory.RunAll);
         }
 
