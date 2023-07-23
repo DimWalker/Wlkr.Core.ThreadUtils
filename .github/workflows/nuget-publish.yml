@@ -28,7 +28,7 @@ jobs:
         run: |
           cd Wlkr.Core.ThreadUtils
           dotnet pack Wlkr.Core.ThreadUtils.csproj  --configuration Release --no-build
-          cd Wlkr.SafePaddleOCR
+          cd ../Wlkr.SafePaddleOCR
           dotnet pack Wlkr.SafePaddleOCR.csproj  --configuration Release --no-build
 
       - name: Publish NuGet package
