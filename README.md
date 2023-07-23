@@ -1,8 +1,6 @@
-# Wlkr.Core.ThreadUtils
-
 [![DimTechStudio.Com](https://raw.githubusercontent.com/DimWalker/Wlkr.Core.ThreadUtils/master/vx_images/DimTechStudio-Logo.png)](https://www.dimtechstudio.com/)
 
-请基于以下文章，帮忙续写一段总结
+# Wlkr.Core.ThreadUtils
 
 ## 项目背景
 
