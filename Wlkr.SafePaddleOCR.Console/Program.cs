@@ -58,8 +58,8 @@ List<Mat> CreatePng()
 }
 List<Mat> images = CreatePng();
 
-int thdNumsOCR = 1, maxTimes = 256;
-string warmupImgPath = @"../../../../../vx_images/DimTechStudio-Logo.png";
+int thdNumsOCR = 4, maxTimes = 10240;
+string warmupImgPath = @"../../../../vx_images/DimTechStudio-Logo.png";
 void SafePaddleOCRTest()
 {
     Console.WriteLine($"Running {GetCurrentMethodName()}...");
@@ -209,10 +209,10 @@ void QueuedPaddleOcrAllTest()
 }
 
 
-//SafePaddleOCRTest();
-//Console.WriteLine("Press Enter To Continues...");
-//Console.ReadLine();
-//GC.Collect();
+SafePaddleOCRTest();
+Console.WriteLine("Press Enter To Continues...");
+Console.ReadLine();
+GC.Collect();
 QueuedPaddleOcrAllTest();
 Console.WriteLine("Press Enter To Continues...");
 Console.ReadLine();
