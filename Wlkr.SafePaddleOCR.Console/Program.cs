@@ -58,7 +58,9 @@ List<Mat> CreatePng()
 }
 List<Mat> images = CreatePng();
 
-int thdNumsOCR = 4, maxTimes = 10240;
+int thdNumsOCR = 4,
+    maxTimes = 10240,
+    waitThread = 32;
 string warmupImgPath = @"../../../../vx_images/DimTechStudio-Logo.png";
 void SafePaddleOCRTest()
 {
@@ -98,7 +100,7 @@ void SafePaddleOCRTest()
             return res;
         }));
         cnt++;
-        if (lst.Count >= 32)
+        if (lst.Count >= waitThread)
         {
             Task.WaitAll(lst.ToArray());
             foreach (var t in lst)
@@ -175,7 +177,7 @@ void QueuedPaddleOcrAllTest()
             return res;
         }));
         cnt++;
-        if (lst.Count >= 32)
+        if (lst.Count >= waitThread)
         {
             Task.WaitAll(lst.ToArray());
             //foreach (var t in lst)
@@ -209,10 +211,10 @@ void QueuedPaddleOcrAllTest()
 }
 
 
-SafePaddleOCRTest();
-Console.WriteLine("Press Enter To Continues...");
-Console.ReadLine();
-GC.Collect();
+//SafePaddleOCRTest();
+//Console.WriteLine("Press Enter To Continues...");
+//Console.ReadLine();
+//GC.Collect();
 QueuedPaddleOcrAllTest();
 Console.WriteLine("Press Enter To Continues...");
 Console.ReadLine();
